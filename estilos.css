@@ -1,0 +1,180 @@
+* { box-sizing: border-box; }
+
+:root {
+    --lapiz: #14307A;      /* lapislázuli */
+    --noche: #0A1A45;
+    --oro: #E3B63F;
+    --oro-osc: #9A7014;
+    --arcilla: #F1E2BF;    /* tablilla de arcilla */
+    --tinta: #3B2A14;
+    --ok: #2F7D4F;
+    --mal: #A8321F;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #FFF4D6;
+    min-height: 100vh;
+    /* muros de ladrillo esmaltado, como la Puerta de Ishtar */
+    background:
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.10) 0 2px, transparent 2px 46px),
+        repeating-linear-gradient(90deg, rgba(0,0,0,0.08) 0 2px, transparent 2px 92px),
+        linear-gradient(180deg, var(--noche), var(--lapiz) 70%, #1B4FA0);
+    background-attachment: fixed;
+}
+
+/* Franja decorativa superior */
+body::before {
+    content: "";
+    display: block;
+    height: 18px;
+    background:
+        repeating-linear-gradient(90deg, var(--oro) 0 14px, var(--oro-osc) 14px 18px, var(--lapiz) 18px 32px, var(--oro-osc) 32px 36px);
+    border-bottom: 3px solid var(--oro);
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 900px;
+    margin: auto;
+    padding: 30px 10px;
+    text-align: center;
+}
+
+h1, h2, h3, .boton-girar, .categoria, .sector, .centro, .marcador {
+    font-family: "Cinzel", Georgia, serif;
+}
+
+h1 {
+    font-family: "Cinzel Decorative", "Cinzel", Georgia, serif;
+    font-size: clamp(28px, 6.5vw, 44px);
+    margin: 0 0 6px;
+    color: var(--oro);
+    text-shadow: 0 3px 0 var(--oro-osc), 0 6px 14px rgba(0,0,0,0.6);
+}
+h2 { margin: 0; font-size: clamp(16px, 3.5vw, 22px); font-weight: 500; letter-spacing: 1px; }
+.subtitulo { color: #F5D98A; font-style: italic; }
+
+/* MARCADOR: bolsa de monedas */
+.marcador {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 40px;
+    background: rgba(10,26,69,0.65);
+    border: 2px solid var(--oro);
+    padding: 14px;
+    border-radius: 12px;
+    margin: 25px 0;
+    font-weight: 700;
+}
+.marcador strong { color: var(--oro); }
+
+/* RULETA */
+.zona-ruleta { position: relative; width: 330px; height: 350px; margin: auto; }
+
+.flecha {
+    position: absolute; top: -5px; left: 50%;
+    transform: translateX(-50%);
+    font-size: 45px; color: var(--oro);
+    text-shadow: 0 0 8px #000, 0 2px 0 var(--oro-osc);
+    z-index: 10;
+}
+
+.ruleta {
+    position: absolute; bottom: 0;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 9px solid var(--oro);
+    box-shadow: 0 0 0 4px var(--oro-osc), 0 0 35px rgba(227,182,63,0.55);
+    transition: transform 4s cubic-bezier(.17,.67,.12,.99);
+}
+
+.sector {
+    position: absolute; top: 50%; left: 50%;
+    width: 84px; text-align: center;
+    font-size: 11px; font-weight: 700; line-height: 1.15;
+    color: #FFF4D6;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+.sector span { display: block; font-size: 26px; }
+
+.centro {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px; height: 100px;
+    background: radial-gradient(circle, var(--lapiz), var(--noche));
+    border: 6px solid var(--oro);
+    border-radius: 50%;
+    display: flex; justify-content: center; align-items: center;
+    font-weight: 700; font-size: 12px; letter-spacing: 1px;
+    color: var(--oro);
+    box-shadow: 0 0 15px #000;
+}
+
+/* BOTONES: oro */
+.boton-girar {
+    background: linear-gradient(180deg, #F3CF6B, var(--oro) 50%, var(--oro-osc));
+    color: var(--tinta);
+    border: 2px solid #6B4C0C;
+    padding: 14px 34px;
+    font-size: 18px; font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 0 #6B4C0C;
+}
+.boton-girar:hover:not(:disabled) { transform: translateY(-2px) scale(1.05); box-shadow: 0 6px 0 #6B4C0C, 0 0 20px var(--oro); }
+.boton-girar:disabled { opacity: 0.5; cursor: not-allowed; }
+button:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+
+/* TARJETA: tablilla de arcilla */
+.tarjeta {
+    background: var(--arcilla);
+    background-image: radial-gradient(rgba(139,90,30,0.12) 1px, transparent 1px);
+    background-size: 8px 8px;
+    color: var(--tinta);
+    margin: 35px auto;
+    padding: 25px;
+    border: 5px double #8C5A1E;
+    border-radius: 14px;
+    max-width: 650px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+}
+
+.categoria {
+    display: inline-block; color: #FFF4D6;
+    padding: 7px 18px; border-radius: 6px;
+    font-size: 14px; font-weight: 700;
+    border: 2px solid var(--oro);
+}
+
+.opciones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+
+.opcion {
+    border: 2px solid #B98F4C;
+    padding: 14px;
+    border-radius: 8px;
+    background: #E8D29E;
+    color: var(--tinta);
+    font-family: Georgia, serif;
+    cursor: pointer; font-size: 16px;
+    transition: 0.2s;
+}
+.opcion:hover:not(:disabled) { background: #F6DF93; transform: scale(1.03); }
+.opcion:disabled { cursor: default; }
+.opcion.correcta { background: #CFE8C9; border-color: var(--ok); }
+.opcion.incorrecta { background: #F2C6BD; border-color: var(--mal); }
+
+.resultado { font-size: 18px; font-weight: bold; min-height: 25px; }
+.explicacion { font-size: 15px; font-style: italic; margin: 0; }
+
+.oculto { display: none; }
+
+footer { margin-top: 40px; opacity: 0.8; font-size: 14px; color: #F5D98A; }
+
+@media (max-width: 520px) {
+    .opciones { grid-template-columns: 1fr; }
+    .zona-ruleta { transform: scale(0.88); margin-bottom: -30px; }
+}
